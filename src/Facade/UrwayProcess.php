@@ -16,7 +16,7 @@ class UrwayProcess
         return [
             'trackid'       => $arr['trackid'],
             'terminalId'    => config('pay.urway.terminal_id'),
-            'customerEmail' => $arr['user']['email'],
+            'customerEmail' => $arr['email'],
             'action'        => "1",  // action is always 1
             'merchantIp'    => self::getServerIp(),
             'password'      => config('pay.urway.urway_password'),
