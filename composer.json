@@ -1,0 +1,21 @@
+{
+    "name": "alaaelsaid/laravel-urway-payment",
+    "description": "This package is to integrate with URWay payment",
+    "type": "library",
+    "require": {
+        "php": "^7.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Alaaelsaid\\LaravelUrwayPayment\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Alaa Elsaid",
+            "email": "alaa4cat@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
