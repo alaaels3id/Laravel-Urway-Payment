@@ -17,5 +17,18 @@
             "email": "alaa4cat@gmail.com"
         }
     ],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Alaaelsaid\\LaravelUrwayPayment\\Providers\\UrwayServiceProvider"
+            ],
+            "aliases": {
+                "Malath": "Alaaelsaid\\LaravelUrwayPayment\\Facade\\Urway"
+            }
+        }
+    },
     "minimum-stability": "dev"
 }
