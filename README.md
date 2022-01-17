@@ -20,7 +20,7 @@ php artisan vendor:publish --tag="urway"
 ```php
 use Alaaelsaid\LaravelUrwayPayment\Facade\Urway;
 
-Urway::getPaymentUrl([
+$payment_url = Urway::getPaymentUrl([
     'trackid' => 1,
     'email' => 'email@example.com',
     'amount' => 500,
@@ -29,3 +29,5 @@ Urway::getPaymentUrl([
     'udf4' => '', // optional if you want to get extra data in redirection,
     'udf5' => '', // optional if you want to get extra data in redirection,
 ]);
+
+return redirect($payment_url); // this is for example !!
