@@ -9,13 +9,17 @@ class UrwayServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->publishes([__DIR__ . '/../../config/urway.php' => config_path('urway.php')],'urway');
+        $ds = DIRECTORY_SEPARATOR;
+
+        $this->publishes([__DIR__ . $ds .'..'. $ds .'..' . $ds .'config'.$ds.'urway.php' => config_path('urway.php')],'urway');
     }
 
     public function register()
     {
+        $ds = DIRECTORY_SEPARATOR;
+
         $this->app->singleton('Urway', fn() => new UrwayProcess());
 
-        $this->mergeConfigFrom(__DIR__ . '/../../config/urway.php','urway');
+        $this->mergeConfigFrom(__DIR__ . $ds .'..'. $ds .'..' . $ds .'config'.$ds.'urway.php','urway');
     }
 }
