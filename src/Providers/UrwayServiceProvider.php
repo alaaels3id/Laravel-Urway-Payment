@@ -9,7 +9,7 @@ class UrwayServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->publishes([__DIR__ . '/../../config/urway.php' => config_path('urway.php')],'urway');
+        $this->publishes([__DIR__ . '/../../../config/urway.php' => config_path('urway.php')],'urway');
     }
 
     public function register()
