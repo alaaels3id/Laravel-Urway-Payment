@@ -11,7 +11,7 @@ class UrwayServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../../config/urway.php' => config_path('urway.php'),
-        ],'urway');
+        ],'urway-config');
     }
 
     public function register()
