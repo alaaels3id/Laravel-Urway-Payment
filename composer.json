@@ -17,11 +17,6 @@
             "email": "alaa4cat@gmail.com"
         }
     ],
-    "scripts": {
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=urway --ansi --force"
-        ]
-    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
@@ -35,5 +30,6 @@
             }
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
