@@ -8,6 +8,14 @@ You can install the package via [Composer](https://getcomposer.org).
 composer require alaaelsaid/laravel-urway-payment
 ```
 
+## Publishing
+
+After install publish file config
+
+```bash
+php artisan vendor:publish --provider="Alaaelsaid\LaravelUrwayPayment\Providers\UrwayServiceProvider"
+```
+
 ## Usage
 
 ```php
