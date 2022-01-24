@@ -26,7 +26,7 @@
                 "Alaaelsaid\\LaravelUrwayPayment\\Providers\\UrwayServiceProvider"
             ],
             "aliases": {
-                "Malath": "Alaaelsaid\\LaravelUrwayPayment\\Facade\\Urway"
+                "Urway": "Alaaelsaid\\LaravelUrwayPayment\\Facade\\Urway"
             }
         }
     },
