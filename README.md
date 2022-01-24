@@ -13,7 +13,20 @@ composer require alaaelsaid/laravel-urway-payment
 After install publish file config
 
 ```bash
-php artisan vendor:publish --provider="Alaaelsaid\LaravelUrwayPayment\Providers\UrwayServiceProvider"
+php artisan vendor:publish --tag="urway"
+```
+
+## Env
+In the .env file you can add those keys:
+
+```dotenv
+URWAY_TERMINAL_ID=
+URWAY_PASSWORD=
+URWAY_MERCHANT_SECRET_KEY=
+URWAY_CURRENCY=SAR
+# in the development mode set it 'dev' in
+# else in production mode set it 'live'
+URWAY_STATUS=dev
 ```
 
 ## Usage
