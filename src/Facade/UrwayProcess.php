@@ -15,11 +15,11 @@ class UrwayProcess
     {
         return [
             'trackid'       => $arr['trackid'],
-            'terminalId'    => config('pay.urway.terminal_id'),
+            'terminalId'    => config('urway.terminal_id'),
             'customerEmail' => $arr['email'],
             'action'        => "1",  // action is always 1
             'merchantIp'    => self::getServerIp(),
-            'password'      => config('pay.urway.urway_password'),
+            'password'      => config('urway.urway_password'),
             'currency'      => config('urway.currency'),
             'country'       => "SA",
             'amount'        => $arr['amount'],
@@ -48,7 +48,11 @@ class UrwayProcess
 
     private static function base()
     {
-        return 'https://payments-dev.urway-tech.com/URWAYPGService/transaction/jsonProcess/JSONrequest';
+        $dev = 'https://payments-dev.urway-tech.com/URWAYPGService/transaction/jsonProcess/JSONrequest';
+
+        $live = 'https://payments.urway-tech.com/URWAYPGService/transaction/jsonProcess/JSONrequest';
+
+        return config('urway.status') == 'dev' ? $dev : $live;
     }
 
     private static function getServerIp()
