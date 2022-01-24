@@ -2,6 +2,7 @@
     "name": "alaaelsaid/laravel-urway-payment",
     "description": "This package is to integrate with URWay payment",
     "type": "library",
+    "keywords": ["payment", "urway"],
     "require": {
         "php": "^7.4"
     },
@@ -30,6 +31,6 @@
             }
         }
     },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "minimum-stability": "stable"
 }
