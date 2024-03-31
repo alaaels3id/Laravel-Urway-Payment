@@ -6,19 +6,19 @@ use Illuminate\Support\Facades\Http;
 
 class UrwayProcess
 {
-    public static function getPaymentUrl(array $data)
+    public function getPaymentUrl(array $data)
     {
         return self::urway($data)['payment_url'];
     }
 
-    private static function getUrwayChargeData($arr): array
+    private function getUrwayChargeData($arr): array
     {
         return [
             'trackid'       => $arr['trackid'],
             'terminalId'    => config('urway.terminal_id'),
             'customerEmail' => $arr['email'],
             'action'        => "1",  // action is always 1
-            'merchantIp'    => self::getServerIp(),
+            'merchantIp'    => $this->getServerIp(),
             'password'      => config('urway.urway_password'),
             'currency'      => config('urway.currency'),
             'country'       => "SA",
@@ -28,25 +28,25 @@ class UrwayProcess
             "udf3"          => $arr['udf3'] ?? "",
             "udf4"          => $arr['udf4'] ?? "",
             "udf5"          => $arr['udf5'] ?? "",
-            'requestHash'   => self::generateHash($arr),  //generated Hash
+            'requestHash'   => $this->generateHash($arr),  //generated Hash
         ];
     }
 
-    private static function urway($arr): array
+    private function urway($arr): array
     {
-        $data = self::getUrwayChargeData($arr);
+        $data = $this->getUrwayChargeData($arr);
 
-        $response = Http::post(self::base(), $data)->object();
+        $response = Http::post($this->base(), $data)->object();
 
-        return ['payment_url' => self::paymentUrl($response), 'error' => ''];
+        return ['payment_url' => $this->paymentUrl($response), 'error' => ''];
     }
 
-    private static function paymentUrl($response): string
+    private function paymentUrl($response): string
     {
         return (isset($response->targetUrl) && isset($response->payid)) ? $response->targetUrl . '?paymentid=' . $response->payid : '';
     }
 
-    private static function base(): string
+    private function base(): string
     {
         $dev = 'https://payments-dev.urway-tech.com/URWAYPGService/transaction/jsonProcess/JSONrequest';
 
@@ -55,27 +55,41 @@ class UrwayProcess
         return config('urway.status') == 'dev' ? $dev : $live;
     }
 
-    private static function getServerIp(): bool|array|string
+    private function getServerIp(): bool|array|string
     {
         if (getenv('HTTP_CLIENT_IP'))
+        {
             $ipaddress = getenv('HTTP_CLIENT_IP');
+        }
         else if (getenv('HTTP_X_FORWARDED_FOR'))
+        {
             $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+        }
         else if (getenv('HTTP_X_FORWARDED'))
+        {
             $ipaddress = getenv('HTTP_X_FORWARDED');
+        }
         else if (getenv('HTTP_FORWARDED_FOR'))
+        {
             $ipaddress = getenv('HTTP_FORWARDED_FOR');
+        }
         else if (getenv('HTTP_FORWARDED'))
+        {
             $ipaddress = getenv('HTTP_FORWARDED');
+        }
         else if (getenv('REMOTE_ADDR'))
+        {
             $ipaddress = getenv('REMOTE_ADDR');
+        }
         else
+        {
             $ipaddress = 'UNKNOWN';
+        }
 
         return $ipaddress;
     }
 
-    private static function generateHash($arr): string
+    private function generateHash($arr): string
     {
         $txn_details = $arr['trackid'];
 
